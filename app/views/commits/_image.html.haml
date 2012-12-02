@@ -6,7 +6,7 @@
       %p.image-info= "#{number_to_human_size file.size}"
 - else
   .image
-    %div.two-up.view
+    .two-up.view
       %span.wrap
         .frame.deleted
           %a{href: project_tree_path(@project, tree_join(@commit.id, diff.old_path))}
@@ -32,15 +32,18 @@
           %b H:
           %span.meta-height
 
-    %div.swipe.view
+    .swipe.view.hide
       .swipe-frame
         .frame.deleted
           %img{src: "data:#{old_file.mime_type};base64,#{Base64.encode64(old_file.data)}"}
         .swipe-wrap
           .frame.added
             %img{src: "data:#{file.mime_type};base64,#{Base64.encode64(file.data)}"}
+        %span.swipe-bar
+          %span.top-handle
+          %span.bottom-handle
 
-  .view-modes
+  .view-modes.hide
     %ul.view-modes-menu
       %li.two-up 2-up
       %li.swipe Swipe

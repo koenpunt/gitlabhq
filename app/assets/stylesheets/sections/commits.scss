@@ -113,7 +113,6 @@
     background: #FFF;
     color: #333;
     font-size: 12px;
-    font-family: $monospace_font;
     .old{
       span.idiff{
         background-color: #FAA;
@@ -126,6 +125,10 @@
     }
 
     table {
+      font-family: $monospace_font;
+      border: none;
+      margin: 0px;
+      padding: 0px;
       td {
         line-height: 18px;
       }
@@ -134,7 +137,7 @@
     @import 'commits-revise.scss';
   }
   .image {
-    background: #eee;
+    background: #ddd;
     text-align: center;
     padding: 30px;
     .wrap{
@@ -161,7 +164,6 @@
     .image-info{
       font-size: 12px;
       margin: 5px 0 0 0;
-      font-family: $default_font;
       color: grey;
     }
     
@@ -174,8 +176,62 @@
     .view.swipe{
       position: relative;
       .frame{
+        top: 0;
+        right: 0;
         position: absolute;
-        max-width: 1000px;
+        &.deleted{
+          margin: 0;
+          position: absolute;
+          display: block;
+          top: 13px;
+          right: 7px;
+        }
+      }
+      .swipe-bar{
+        height: 100%;
+        width: 15px;
+        z-index: 100;
+        position: absolute;
+      }
+    }
+  }
+  .view-modes{
+
+    padding: 10px;
+    text-align: center;
+    
+    background-image: -webkit-gradient(linear, 0 0, 0 30, color-stop(0.066, #eee), to(#dfdfdf));
+    background-image: -webkit-linear-gradient(#eee 6.6%, #dfdfdf);
+    background-image: -moz-linear-gradient(#eee 6.6%, #dfdfdf);
+    background-image: -o-linear-gradient(#eee 6.6%, #dfdfdf);
+    
+    ul, li{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+    }
+    
+    li{
+      color: grey;
+      border-left: 1px solid #c1c1c1;
+      padding: 0 12px 0 16px;
+      cursor: pointer;
+      &:first-child{
+        border-left: none;
+      }
+      &:hover{
+        text-decoration: underline;
+      }
+      &.active{
+        &:hover{
+          text-decoration: none;
+        }
+        cursor: default;
+        color: #333;
+      }
+      &.disabled{
+        display: none;
       }
     }
   }
@@ -183,10 +239,21 @@
 
 /** COMMIT BLOCK **/
 .commit-title{
-  display: block;}
-.commit-title{margin-bottom: 10px}
-.commit-author, .commit-committer{display: block;color: #999; font-weight: normal; font-style: italic;}
-.commit-author strong, .commit-committer strong{font-weight: bold; font-style: normal;}
+  display: block;
+}
+.commit-title{
+  margin-bottom: 10px;
+}
+.commit-author, .commit-committer{
+  display: block;
+  color: #999; 
+  font-weight: normal; 
+  font-style: italic;
+}
+.commit-author strong, .commit-committer strong{
+  font-weight: bold; 
+  font-style: normal;
+}
 
 
 /**
