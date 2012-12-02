@@ -17,8 +17,9 @@ class ImageFile
     @viewMode = ImageFile.viewModes[0]
     
     $('.view-modes', @file).removeClass 'hide'
-    $('.view-modes-menu li:not(.active)', @file).on 'click', (event) =>
-      this.activateViewMode(event.currentTarget.className)
+    $('.view-modes-menu li', @file).on 'click', (event) =>
+      unless $(event.currentTarget).hasClass('active')
+        this.activateViewMode(event.currentTarget.className)
         
     this.activateViewMode(@viewMode)
   
