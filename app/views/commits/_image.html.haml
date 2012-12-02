@@ -10,10 +10,39 @@
       %span.wrap
         .frame.deleted
           %a{href: project_tree_path(@project, tree_join(@commit.id, diff.old_path))}
-            %img{src: "data:#{file.mime_type};base64,#{Base64.encode64(old_file.data)}"}
-        %p.image-info= "#{number_to_human_size old_file.size}"
+            %img{src: "data:#{old_file.mime_type};base64,#{Base64.encode64(old_file.data)}"}
+        %p.image-info.hide
+          %span.meta-filesize= "#{number_to_human_size old_file.size}"
+          |
+          %b W:
+          %span.meta-width 
+          |
+          %b H:
+          %span.meta-height
       %span.wrap
         .frame.added
           %a{href: project_tree_path(@project, tree_join(@commit.id, diff.new_path))}
             %img{src: "data:#{file.mime_type};base64,#{Base64.encode64(file.data)}"}
-        %p.image-info= "#{number_to_human_size file.size}"
+        %p.image-info.hide
+          %span.meta-filesize= "#{number_to_human_size old_file.size}"
+          |
+          %b W:
+          %span.meta-width 
+          |
+          %b H:
+          %span.meta-height
+
+    %div.swipe.view
+      .swipe-frame
+        .frame.deleted
+          %img{src: "data:#{old_file.mime_type};base64,#{Base64.encode64(old_file.data)}"}
+        .swipe-wrap
+          .frame.added
+            %img{src: "data:#{file.mime_type};base64,#{Base64.encode64(file.data)}"}
+
+  .view-modes
+    %ul.view-modes-menu
+      %li.two-up 2-up
+      %li.swipe Swipe
+      %li.disabled Onion Skin
+      %li.disabled Difference
