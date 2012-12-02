@@ -131,6 +131,47 @@
       padding: 0px;
       td {
         line-height: 18px;
+        font-size: 12px;
+      }
+    }
+    .old_line, .new_line {
+      margin: 0px;
+      padding: 0px;
+      border: none;
+      background: #EEE;
+      color: #666;
+      padding: 0px 5px;
+      border-right: 1px solid #ccc;
+      text-align: right;
+      min-width: 35px;
+      max-width: 35px;
+      width: 35px;
+      @include user-select(none);
+      a {
+        float: left;
+        width: 35px;
+        font-weight: normal;
+        color: #666;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .line_content {
+      white-space: pre;
+      height: 14px;
+      margin: 0px;
+      padding: 0px;
+      border: none;
+      &.new {
+        background: #CFD;
+      }
+      &.old {
+        background: #FDD;
+      }
+      &.matched {
+        color: #ccc;
+        background: #fafafa;
       }
     }
   }
@@ -144,11 +185,10 @@
     
     .frame {
       display: inline-block;
-      padding: 1px;
-      max-width: 400px;
       background-color: #fff;
       line-height: 0;
       img{
+        border: 1px solid #FFF;
         background: url('trans_bg.gif');
       }
       &.deleted {
@@ -165,31 +205,64 @@
       color: grey;
     }
     
-    .view.two-up {
-      .frame {
-        max-width: 400px;
-      }
-    }
-    
     .view.swipe{
       position: relative;
+      
+      .swipe-frame{
+        display: block;
+        margin: auto;
+        position: relative;
+      }
+      .swipe-wrap{
+        overflow: hidden;
+        border-left: 1px solid #999;
+        position: absolute;
+        display: block;
+        top: 13px;
+        right: 7px;
+      }
       .frame{
         top: 0;
         right: 0;
         position: absolute;
         &.deleted{
           margin: 0;
-          position: absolute;
           display: block;
           top: 13px;
           right: 7px;
         }
       }
       .swipe-bar{
+        display: block;
         height: 100%;
         width: 15px;
         z-index: 100;
         position: absolute;
+        cursor: pointer;
+        &:hover{
+          .top-handle{
+            background-position: -15px 3px;
+          }
+          .bottom-handle{
+            background-position: -15px -11px;
+          }
+        };
+        .top-handle{
+          display: block;
+          height: 14px;
+          width: 15px;
+          position: absolute;
+          top: 0px;
+          background: url('swipemode_sprites.gif') 0 3px no-repeat;
+        }
+        .bottom-handle{
+          display: block;
+          height: 14px;
+          width: 15px;
+          position: absolute;
+          bottom: 0px;
+          background: url('swipemode_sprites.gif') 0 -11px no-repeat;
+        }
       }
     }
   }
